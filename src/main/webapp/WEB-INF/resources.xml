@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tomee>
+    <!-- PostgreSQL Database -->
+    <Resource id="ShopDataSource" type="DataSource">
+        JdbcDriver = org.postgresql.Driver
+        JdbcUrl = jdbc:postgresql://db:5432/postgres
+        UserName = postgres
+        Password = postgres
+        InitialSize = 1
+        MaxActive = 10
+        MaxWaitTime = 10 seconds
+        MaxIdle = 2
+        MinIdle = 1
+        ValidationQuery = SELECT 1
+        TestOnBorrow = true
+        TestWhileIdle = true
+        TimeBetweenEvictionRuns = 2 min
+        removeAbandoned = true
+        removeAbandonedTimeout = 600
+        logAbandoned = true
+        jmxEnabled = true
+    </Resource>
+</tomee>
