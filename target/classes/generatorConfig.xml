@@ -19,15 +19,12 @@
 
         <table schema="public" tableName="freelancers" mapperName="FreelancerMapper" domainObjectName="Freelancer">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
-            <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="jobs" mapperName="JobMapper" domainObjectName="Job">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
-            <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="firms" mapperName="FirmMapper" domainObjectName="Firm">
             <generatedKey column="id" identity="true" sqlStatement="JDBC" />
-            <ignoreColumn column="opt_lock_version" />
         </table>
         <table schema="public" tableName="freelancers_jobs" mapperName="FreelancerJobMapper" domainObjectName="FreelancerJob">
         </table>
