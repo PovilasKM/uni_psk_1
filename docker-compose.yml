@@ -14,4 +14,4 @@ services:
     ports:
       - 8080:8080
     volumes:
-      - ./target/JavaEEstarter-1.0-SNAPSHOT.war:/usr/local/tomee/webapps/JavaEEstarter-1.0-SNAPSHOT.war
+      - C:\Users\Laptops\Desktop\psk_solo/target/JavaEEstarter-1.0-SNAPSHOT.war:/usr/local/tomee/webapps/JavaEEstarter-1.0-SNAPSHOT.war

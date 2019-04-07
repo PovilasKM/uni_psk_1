@@ -10,12 +10,12 @@
 <h:body>
     <div style="width: 50%; float: left;">
         <p:fieldset legend="All firms">
-            <p:dataTable value="#{EmploymentControllerJPA.firms}" var="firm">
+            <p:dataTable value="#{employmentControllerJPA.firms}" var="firm">
                 <p:column headerText="Firm">
                     <h:outputText value="#{firm.id} #{firm.name}" />
                 </p:column>
                 <p:column headerText="Freelancers of the firm">
-                    <ui:repeat var="freelancer" value="#{firm.orders}">
+                    <ui:repeat var="freelancer" value="#{firm.freelancers}">
                         <h:outputText value="Freelancer ID: #{freelancer.id} " />
                         <span>
                             (Job IDs:
@@ -38,7 +38,7 @@
                 <td>
                     <h:panelGrid columns="1">
                         <p:outputLabel for="name" value="Firm name"/>
-                        <p:inputText id="name" value="#{EmploymentControllerJPA.firm.name}"/>
+                        <p:inputText id="name" value="#{employmentControllerJPA.firm.name}"/>
                         <p:message for="name"/>
                     </h:panelGrid>
                 </td>
@@ -46,7 +46,7 @@
         </table>
 
         <p:commandButton value="Create"
-                         actionListener="#{EmploymentControllerJPA.createFirmWithFreelancers()}"
+                         actionListener="#{employmentControllerJPA.createFirmWithFreelancers()}"
                          action="employment-jpa?faces-redirect=true"
                          ajax="false"/>
     </h:form>
