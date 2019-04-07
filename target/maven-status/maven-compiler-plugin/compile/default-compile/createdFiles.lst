@@ -1,0 +1,8 @@
+lt/vu/entities/Freelancer.class
+lt/vu/entities/Firm.class
+lt/vu/usecases/controllers/EmploymentControllerJPA.class
+lt/vu/usecases/cdi/RescueOrAsync.class
+lt/vu/entities/Job.class
+lt/vu/usecases/cdi/JPAResources.class
+lt/vu/usecases/dao/FirmDAO.class
+lt/vu/usecases/dao/FreelancerDAO.class

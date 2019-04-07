@@ -4,8 +4,8 @@ package lt.vu.usecases.controllers;
 import lombok.Getter;
 import lt.vu.entities.Firm;
 import lt.vu.entities.Freelancer;
-import lt.vu.usecases.dao.FreelancerDAO;
 import lt.vu.usecases.dao.FirmDAO;
+import lt.vu.usecases.dao.FreelancerDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -32,18 +32,18 @@ public class EmploymentControllerJPA {
 
     @PostConstruct
     public void init() {
-        loadAllUsers();
+        loadAllFirms();
     }
 
     @Transactional
-    public void createUserWithOrder() {
+    public void createFirmWithFreelancers() {
         firm.getFreelancers().add(freelancer);
         freelancer.setFirm(firm);
         freelancerDAO.create(freelancer);
         firmDAO.create(firm);
     }
 
-    private void loadAllUsers() {
+    private void loadAllFirms() {
         this.firms = firmDAO.getAllFirms();
     }
 }

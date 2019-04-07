@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <tomee>
     <!-- PostgreSQL Database -->
-    <Resource id="ShopDataSource" type="DataSource">
+    <Resource id="EmploymentDataSource" type="DataSource">
         JdbcDriver = org.postgresql.Driver
         JdbcUrl = jdbc:postgresql://db:5432/postgres
         UserName = postgres

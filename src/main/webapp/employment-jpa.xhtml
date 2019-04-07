@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+>
+<h:head></h:head>
+
+<h:body>
+    <div style="width: 50%; float: left;">
+        <p:fieldset legend="All firms">
+            <p:dataTable value="#{EmploymentControllerJPA.firms}" var="firm">
+                <p:column headerText="Firm">
+                    <h:outputText value="#{firm.id} #{firm.name}" />
+                </p:column>
+                <p:column headerText="Freelancers of the firm">
+                    <ui:repeat var="freelancer" value="#{firm.orders}">
+                        <h:outputText value="Freelancer ID: #{freelancer.id} " />
+                        <span>
+                            (Job IDs:
+                            <ui:repeat var="job" value="#{freelancer.jobs}">
+                                <h:outputText value=" #{job.id}" />
+                            </ui:repeat>
+                            )
+                        </span>
+                        <br/>
+                    </ui:repeat>
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+    </div>
+    <br/>
+    <h:form>
+        <h2>Create a new freelancer for a new firm</h2>
+        <table>
+            <tr>
+                <td>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel for="name" value="Firm name"/>
+                        <p:inputText id="name" value="#{EmploymentControllerJPA.firm.name}"/>
+                        <p:message for="name"/>
+                    </h:panelGrid>
+                </td>
+            </tr>
+        </table>
+
+        <p:commandButton value="Create"
+                         actionListener="#{EmploymentControllerJPA.createFirmWithFreelancers()}"
+                         action="employment-jpa?faces-redirect=true"
+                         ajax="false"/>
+    </h:form>
+</h:body>
+</html>
+
