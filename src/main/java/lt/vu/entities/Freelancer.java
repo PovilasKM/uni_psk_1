@@ -13,13 +13,15 @@ import java.util.List;
 @Table(name = "freelancers")
 @Getter
 @Setter
-@ToString(of = {"id"})
+@ToString(of = {"id", "name"})
 public class Freelancer implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
+
+    private String name;
 
     @JoinColumn(name = "firm_id", referencedColumnName = "id")
     @ManyToOne

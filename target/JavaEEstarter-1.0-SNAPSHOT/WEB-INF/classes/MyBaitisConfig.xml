@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <typeAlias type="lt.vu.usecases.mybatis.model.Freelancer" alias="Freelancer"/>
+        <typeAlias type="lt.vu.usecases.mybatis.model.FreelancerJob" alias="FreelancerJob"/>
+        <typeAlias type="lt.vu.usecases.mybatis.model.Job" alias="Job"/>
+        <typeAlias type="lt.vu.usecases.mybatis.model.Firm" alias="Firm"/>
+    </typeAliases>
+    <environments default="development">
+        <environment id="development">
+            <transactionManager type="MANAGED"/>
+            <dataSource type="JNDI">
+                <!--<property name="data_source" value="java:global/StudentsDataSource"/>-->
+                <property name="data_source" value="openejb:Resource/EmploymentDataSource"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <mappers>
+        <mapper resource="mybatis/xml/FreelancerMapper.xml"/>
+        <mapper resource="mybatis/xml/FreelancerJobMapper.xml"/>
+        <mapper resource="mybatis/xml/JobMapper.xml"/>
+        <mapper resource="mybatis/xml/FirmMapper.xml"/>
+    </mappers>
+</configuration>

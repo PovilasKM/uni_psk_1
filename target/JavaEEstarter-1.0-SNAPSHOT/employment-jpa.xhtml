@@ -16,7 +16,7 @@
                 </p:column>
                 <p:column headerText="Freelancers of the firm">
                     <ui:repeat var="freelancer" value="#{firm.freelancers}">
-                        <h:outputText value="Freelancer ID: #{freelancer.id} " />
+                        <h:outputText value="Freelancer ID: #{freelancer.id}" />
                         <span>
                             (Job IDs:
                             <ui:repeat var="job" value="#{freelancer.jobs}">
@@ -40,6 +40,13 @@
                         <p:outputLabel for="name" value="Firm name"/>
                         <p:inputText id="name" value="#{employmentControllerJPA.firm.name}"/>
                         <p:message for="name"/>
+                    </h:panelGrid>
+                </td>
+                <td>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel for="nameFree" value="Freelancer name"/>
+                        <p:inputText id="nameFree" value="#{employmentControllerJPA.freelancer.name}"/>
+                        <p:message for="nameFree"/>
                     </h:panelGrid>
                 </td>
             </tr>

@@ -4,8 +4,10 @@ package lt.vu.usecases.controllers;
 import lombok.Getter;
 import lt.vu.entities.Firm;
 import lt.vu.entities.Freelancer;
+import lt.vu.entities.Job;
 import lt.vu.usecases.dao.FirmDAO;
 import lt.vu.usecases.dao.FreelancerDAO;
+import lt.vu.usecases.dao.JobDAO;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -24,11 +26,17 @@ public class EmploymentControllerJPA {
     @Getter
     private Freelancer freelancer = new Freelancer();
 
+    @Getter
+    private Job job = new Job();
+
     @Inject
     private FirmDAO firmDAO;
 
     @Inject
     private FreelancerDAO freelancerDAO;
+
+    @Inject
+    private JobDAO jobDAO;
 
     @PostConstruct
     public void init() {
@@ -39,8 +47,10 @@ public class EmploymentControllerJPA {
     public void createFirmWithFreelancers() {
         firm.getFreelancers().add(freelancer);
         freelancer.setFirm(firm);
+        freelancer.getJobs().add(job);
         freelancerDAO.create(freelancer);
         firmDAO.create(firm);
+        jobDAO.create(job);
     }
 
     private void loadAllFirms() {

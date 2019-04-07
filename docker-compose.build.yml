@@ -4,7 +4,7 @@ services:
   maven:
     image: maven:3.6.0-jdk-8-alpine
     volumes:
-    - C:\Users\Laptops\Desktop\psk_solo:/usr/src/mymaven
-    - C:\Users\Laptops\Desktop\psk_solo/.m2:/root/.m2
+    - .:/usr/src/mymaven
+    - ./.m2:/root/.m2
     working_dir: /usr/src/mymaven
     command: mvn package

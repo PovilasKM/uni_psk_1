@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <context id="EmploymentDB" targetRuntime="MyBatis3Simple">
+        <jdbcConnection driverClass="org.postgresql.Driver"
+                        connectionURL="jdbc:postgresql://127.0.0.1:5432/postgres"
+                        userId="postgres"
+                        password="postgres">
+        </jdbcConnection>
+
+        <javaModelGenerator targetPackage="lt.vu.usecases.mybatis.model" targetProject="MAVEN" />
+
+        <sqlMapGenerator targetPackage="lt.vu.usecases.mybatis.xml" targetProject="MAVEN" />
+        <javaClientGenerator type="XMLMAPPER" targetPackage="lt.vu.usecases.mybatis.dao" targetProject="MAVEN" />
+
+
+        <table schema="public" tableName="freelancers" mapperName="FreelancerMapper" domainObjectName="Freelancer">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="jobs" mapperName="JobMapper" domainObjectName="Job">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="firms" mapperName="FirmMapper" domainObjectName="Firm">
+            <generatedKey column="id" identity="true" sqlStatement="JDBC" />
+        </table>
+        <table schema="public" tableName="freelancers_jobs" mapperName="FreelancerJobMapper" domainObjectName="FreelancerJob">
+        </table>
+    </context>
+</generatorConfiguration>
