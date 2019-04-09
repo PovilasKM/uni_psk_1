@@ -15,5 +15,4 @@ lt/vu/usecases/controllers/EmploymentControllerJPA.class
 lt/vu/usecases/cdi/JPAResources.class
 lt/vu/entities/Job.class
 lt/vu/usecases/mybatis/model/Firm.class
-lt/vu/usecases/cdi/RescueOrAsync.class
 lt/vu/usecases/mybatis/dao/FreelancerMapper.class

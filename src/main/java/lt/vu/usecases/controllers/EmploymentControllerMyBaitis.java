@@ -1,6 +1,7 @@
 package lt.vu.usecases.controllers;
 
 import lombok.Getter;
+import lombok.Setter;
 import lt.vu.usecases.mybatis.dao.FirmMapper;
 import lt.vu.usecases.mybatis.dao.FreelancerJobMapper;
 import lt.vu.usecases.mybatis.dao.FreelancerMapper;
@@ -31,6 +32,10 @@ public class EmploymentControllerMyBaitis {
     private Job job = new Job();
 
     @Getter
+    @Setter
+    private Integer freelancerId;
+
+    @Getter
     private FreelancerJob freelancerJob = new FreelancerJob();
 
     @Inject
@@ -59,6 +64,18 @@ public class EmploymentControllerMyBaitis {
         freelancerJob.setJobId(job.getId());
         freelancerJob.setFreelancerId(freelancer.getId());
         freelancerJobMapper.insert(freelancerJob);
+    }
+
+    @Transactional
+    public void createJobForFreelancer() {
+        Freelancer freelancerToAdd = freelancerMapper.selectByPrimaryKey(freelancerId);
+        if (freelancerToAdd != null) {
+            FreelancerJob newFreelancerJob = new FreelancerJob();
+            newFreelancerJob.setFreelancerId(freelancerId);
+            jobMapper.insert(job);
+            newFreelancerJob.setJobId(job.getId());
+            freelancerJobMapper.insert(newFreelancerJob);
+        }
     }
 
     private void loadAllFirms() {

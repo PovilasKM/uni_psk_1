@@ -57,6 +57,33 @@
                          action="employment-jpa?faces-redirect=true"
                          ajax="false"/>
     </h:form>
+    <br/>
+    <h:form>
+        <h2>Create a new job for a freelancer</h2>
+        <table>
+            <tr>
+                <td>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel for="title" value="Job's title"/>
+                        <p:inputText id="title" value="#{employmentControllerJPA.job.title}"/>
+                        <p:message for="title"/>
+                    </h:panelGrid>
+                </td>
+                <td>
+                    <h:panelGrid columns="1">
+                        <p:outputLabel for="freelancerId" value="Freelancer's id"/>
+                        <p:inputText id="freelancerId" value="#{employmentControllerJPA.freelancerId}"/>
+                        <p:message for="freelancerId"/>
+                    </h:panelGrid>
+                </td>
+            </tr>
+        </table>
+
+        <p:commandButton value="Create"
+                         actionListener="#{employmentControllerJPA.createJobForFreelancer()}"
+                         action="employment-jpa?faces-redirect=true"
+                         ajax="false"/>
+    </h:form>
 </h:body>
 </html>
 

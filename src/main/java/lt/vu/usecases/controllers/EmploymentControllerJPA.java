@@ -2,6 +2,7 @@ package lt.vu.usecases.controllers;
 
 
 import lombok.Getter;
+import lombok.Setter;
 import lt.vu.entities.Firm;
 import lt.vu.entities.Freelancer;
 import lt.vu.entities.Job;
@@ -29,6 +30,10 @@ public class EmploymentControllerJPA {
     @Getter
     private Job job = new Job();
 
+    @Getter
+    @Setter
+    private Integer freelancerId = 0;
+
     @Inject
     private FirmDAO firmDAO;
 
@@ -51,6 +56,16 @@ public class EmploymentControllerJPA {
         freelancerDAO.create(freelancer);
         firmDAO.create(firm);
         jobDAO.create(job);
+    }
+
+    @Transactional
+    public void createJobForFreelancer() {
+        Freelancer freelancerToAdd = freelancerDAO.findById(freelancerId);
+        if (freelancerToAdd != null) {
+            freelancerToAdd.getJobs().add(job);
+            jobDAO.create(job);
+            freelancerDAO.update(freelancerToAdd);
+        }
     }
 
     private void loadAllFirms() {
