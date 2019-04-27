@@ -14,4 +14,8 @@
     <interceptors>
         <class>lt.vu.usecases.interceptors.MyInterceptorImpl</class>
     </interceptors>
+
+    <decorators>
+        <class>lt.vu.usecases.decorator.AsyncComponentDecorator</class>
+    </decorators>
 </beans>
