@@ -3,6 +3,7 @@ package lt.vu.entities;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.johnzon.mapper.JohnzonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class Freelancer implements Serializable {
 
     @JoinColumn(name = "firm_id", referencedColumnName = "id")
     @ManyToOne
+    @JohnzonIgnore
     private Firm firm;
 
     @JoinTable(name = "freelancers_jobs",
@@ -34,4 +36,8 @@ public class Freelancer implements Serializable {
     @ManyToMany
     private List<Job> jobs = new ArrayList<>();
 
+    @Version
+    @Column(name = "opt_lock_version")
+    @JohnzonIgnore
+    private Integer optLockVersion;
 }

@@ -8,5 +8,10 @@
 
     <alternatives>
         <class>org.apache.deltaspike.jpa.impl.transaction.ContainerManagedTransactionStrategy</class>
+        <class>lt.vu.usecases.rest.FirmRestServiceAlt</class>
     </alternatives>
+
+    <interceptors>
+        <class>lt.vu.usecases.interceptors.MyInterceptorImpl</class>
+    </interceptors>
 </beans>

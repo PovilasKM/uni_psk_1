@@ -3,6 +3,7 @@ package lt.vu.entities;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.apache.johnzon.mapper.JohnzonIgnore;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -28,6 +29,11 @@ public class Firm implements Serializable {
     private String name;
 
     @OneToMany(mappedBy = "firm")
+    @JohnzonIgnore
     private List<Freelancer> freelancers = new ArrayList<>();
 
+    @Version
+    @Column(name = "opt_lock_version")
+    @JohnzonIgnore
+    private Integer optLockVersion;
 }
