@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head>
+    <title>Edit Firm with Optimistic Locking</title>
+</h:head>
+
+<h:body>
+    <h:form id="form">
+
+        <p:fieldset id="list" style="width: 50%">
+            <f:facet name="legend">
+                All firms
+                <p:commandButton value="Refresh" icon="ui-icon-arrowrefresh-1-e"
+                                 actionListener="#{editFirmController.reloadAll}"
+                                 update=":form:list"/>
+            </f:facet>
+
+            <p:dataTable value="#{editFirmController.allFirms}" var="firm" tableStyle="table-layout: auto">
+                <p:column headerText="Firm">
+                    #{firm.name}
+                </p:column>
+                <p:column>
+                    <p:commandButton value="Edit" icon="ui-icon-pencil"
+                                     actionListener="#{editFirmController.prepareForEditing(firm)}"
+                                     update=":form:firmDetail"
+                                     oncomplete="PF('firmDialog').show()" />
+                </p:column>
+            </p:dataTable>
+        </p:fieldset>
+
+        <p:dialog header="Edit Firm" widgetVar="firmDialog" modal="true" closable="true" resizable="false" closeOnEscape="true">
+            <p:outputPanel id="firmDetail">
+                <h:outputText value="No firm was selected... Weird..." rendered="#{empty editFirmController.selectedFirm}" />
+                <p:panelGrid  columns="3" rendered="#{not empty editFirmController.selectedFirm}"
+                              columnClasses="label,value" styleClass="ui-noborder">
+                    <p:outputLabel for="name" value="Name:"/>
+                    <p:inputText id="name" value="#{editFirmController.selectedFirm.name}"/>
+                    <p:message for="name"/>
+
+                    <h:outputText value="Opt. version:" />
+                    <h:outputText value="#{editFirmController.selectedFirm.optLockVersion}" style="font-weight: bold"/>
+                </p:panelGrid>
+
+                <p:commandButton value="Update" actionListener="#{editFirmController.updateSelectedFirm}"
+                                 rendered="#{empty editFirmController.conflictingFirm}"
+                                 icon="ui-icon-check" style="margin-top: 1em"
+                                 update=":form:firmDetail :form:list"
+                                 oncomplete="if (args &amp;&amp; !args.validationFailed) PF('firmDialog').hide()" />
+
+                <p:panelGrid  columns="2" rendered="#{not empty editFirmController.conflictingFirm}"
+                              columnClasses="label,value" styleClass="ui-noborder" style="margin-top: 1em">
+                    <f:facet name="header">Conflicting firm</f:facet>
+
+                    <h:outputText value="Name:"/>
+                    <h:outputText value="#{editFirmController.conflictingFirm.name}"/>
+
+                    <h:outputText value="Opt. version:" />
+                    <h:outputText value="#{editFirmController.conflictingFirm.optLockVersion}" style="font-weight: bold"/>
+                </p:panelGrid>
+
+                <p:commandButton value="Overwrite" actionListener="#{editFirmController.overwriteFirm}"
+                                 rendered="#{not empty editFirmController.conflictingFirm}"
+                                 icon="ui-icon-notice" style="margin-top: 1em"
+                                 update=":form:firmDetail :form:list"
+                                 oncomplete="if (args &amp;&amp; !args.validationFailed) PF('firmDialog').hide()" />
+            </p:outputPanel>
+        </p:dialog>
+
+        <p:messages globalOnly="true"/>
+    </h:form>
+
+</h:body>
+</html>

@@ -19,4 +19,13 @@ public class FirmDAO {
     public void create(Firm firm) {
         em.persist(firm);
     }
+
+    public void updateAndFlush(Firm firm) {
+        em.merge(firm);
+        em.flush();
+    }
+
+    public Firm findById(Integer id) {
+        return em.find(Firm.class, id);
+    }
 }
